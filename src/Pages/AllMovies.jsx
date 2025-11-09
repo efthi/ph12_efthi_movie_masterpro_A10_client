@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router'
 import Card from '../Components/Card';
 import Spinner from '../Components/Spinner';
+import useDataMan from '../hooks/useDataman';
+import ErrorPage from './ErrorPage';
 
 const AllMovies = () => {
  //Page Title
@@ -9,21 +11,11 @@ const AllMovies = () => {
    document.title = 'All Movies | Movie Master Pro '
  }, []);
 
-    const [movieData, setMovieData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [err, setErr] = useState(null)
-    useEffect(()=>{
-        setLoading(true);
-        fetch('../../public/assets/data/hollywood.json')
-            .then(res=>res.json())
-            .then(data=>setMovieData(data))
-            .catch(err=>setErr(err))
-            .finally(()=> setLoading(false))
-              
-    }, []);
+ //Data আনা হলো
+const{loading, err, movies} = useDataMan();
 
-    let location = useLocation();
-        console.log(location);
+if(err) return <ErrorPage></ErrorPage>
+  
         
     return (
         <>
@@ -31,13 +23,12 @@ const AllMovies = () => {
             
         <div className='container mx-auto max-w-[90%] m-10'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            { movieData.map(movie => (
+            { movies.map(movie => (
                 <Card key={movie.id} movie={movie}></Card>
             ))}
             </div>
         </div>
         )}
-       
         </>
     );
 };

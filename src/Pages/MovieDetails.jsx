@@ -7,9 +7,30 @@ const MovieDetails = () => {
   }, []);
 
     return (
-        <div>
-            <p className="text-center m-10 border-2 border-green-700">Movie Details!!</p>
-        </div>
+        <>
+         <div className="grid grid-cols-3">
+            <div>
+              <img src="" alt="" />
+            </div>
+            <div>
+              <h2>Title: </h2>
+              <h4>Summary: </h4>
+              <p>Director: </p>
+              <p>Cast: </p>
+            </div>
+            <div>
+              <span>Year: </span>
+              <span>Genre: </span>
+              <span>Rating: </span>
+              <span>Duration: </span>
+              <span>Lang: </span>
+              <span>Country: </span>
+              <span>EIDR: </span>
+              <span>Added by: </span>
+            </div>
+
+          </div>   
+        </>
     );
 };
 

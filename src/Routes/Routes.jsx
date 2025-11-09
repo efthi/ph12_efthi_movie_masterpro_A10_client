@@ -7,6 +7,7 @@ import MyCollection from "../Pages/MyCollection";
 import Wishlist from "../Pages/Wishlist";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import MovieDetails from "../Pages/MovieDetails";
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
             {index: true, element: <Home />,},
             {path:'allmovies', element: <AllMovies></AllMovies> },
             {path:'mycollection', element: <MyCollection></MyCollection> },
+            {path:'moviedetails/:id', element: <MovieDetails></MovieDetails> },
             {path:'wishlist', element: <Wishlist></Wishlist> },
             {path:'login', element: <Login></Login> },
             {path:'register', element: <Register></Register> },

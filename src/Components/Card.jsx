@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, Drama , CalendarClock } from 'lucide-react';
+import { Link } from 'react-router';
 
 const Card = ({movie}) => {
     return (
@@ -17,7 +18,7 @@ const Card = ({movie}) => {
                 <span><CalendarClock size={20} color="#ff0000" />{movie.releaseYear}</span>
                 
                 </div>
-                <button className="btn btn-primary btn-sm">Details</button>
+                <Link state={movie} to={`moviedetails/${movie.id}`} className="btn btn-primary btn-sm">Details</Link>
             </div>
         </div>   
         </>

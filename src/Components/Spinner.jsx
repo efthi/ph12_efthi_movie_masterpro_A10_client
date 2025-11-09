@@ -4,12 +4,12 @@ import { HashLoader } from "react-spinners";
 const Spinner = () => {
     return (
         <>
-         <div className="flex justify-center items-center mt-[100]">
+         <div className="flex justify-center items-center mt-[200]">
             <HashLoader
                 color="#41f315"
                 cssOverride={null}
                 loading
-                size={150}
+                size={200}
             />
         </div>   
         </>

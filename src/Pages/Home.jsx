@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../Components/Navbar';
 import Spinner from '../Components/Spinner';
 import Footer from '../Components/Footer';
@@ -9,6 +9,11 @@ import RecentMovies from '../Components/RecentMovies';
 import AboutPlatform from '../Components/AboutPlatform';
 
 const Home = () => {
+//Page Title
+const title = useEffect(()=>{
+  document.title = 'Home | Movie Master Pro '
+}, []);
+
     return (
     <>
       <Slider></Slider>

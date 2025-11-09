@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star, Clapperboard, LibraryBig,ListChecks , LogIn } from 'lucide-react';
 import { NavLink } from 'react-router';
+import ThemeChange from './ThemeChange';
 
 
 
@@ -43,8 +44,9 @@ const links = <>
             {/* Login button and Profile menu section starts here */}
             <div className="navbar-end gap-2">
                  {/* toogle button */}
-            <input type="checkbox"
-            className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"/>
+                <ThemeChange></ThemeChange>
+                {/* <input type="checkbox"
+                    className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"/> */}
                 <a className="btn btn-xs md:btn-md">Button</a>
                 <div className="dropdown dropdown-end">
                     <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">

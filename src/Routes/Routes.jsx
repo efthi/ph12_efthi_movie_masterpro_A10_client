@@ -1,6 +1,12 @@
 import {createBrowserRouter} from "react-router";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home";
+import ErrorPage from "../Pages/ErrorPage";
+import AllMovies from "../Pages/AllMovies";
+import MyCollection from "../Pages/MyCollection";
+import Wishlist from "../Pages/Wishlist";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
 
 
 const router = createBrowserRouter([
@@ -8,12 +14,19 @@ const router = createBrowserRouter([
     {
         path:'/',
         Component:MainLayout,
+        errorElement: <ErrorPage></ErrorPage>,
         children:[
             {index: true, element: <Home />,},
-            {path:'allmovies', element: <p className="text-center m-10">All Movies Page</p> },
-            {path:'mycollection', element: <p className="text-center m-10">My Collecetion Page</p> },
-            {path:'wishlist', element: <p className="text-center m-10">My Wishlist Page</p> },
-            {path:'login', element: <p className="text-center m-10">Login Page</p> },
+            {path:'allmovies', element: <AllMovies></AllMovies> },
+            {path:'mycollection', element: <MyCollection></MyCollection> },
+            {path:'wishlist', element: <Wishlist></Wishlist> },
+            {path:'login', element: <Login></Login> },
+            {path:'register', element: <Register></Register> },
+
+            {
+                path: "*",
+                element: <ErrorPage />
+            },
         ]
 
     }

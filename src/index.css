@@ -1,6 +1,8 @@
 @import "tailwindcss";
-@plugin "daisyui";
-
+@plugin "daisyui" {
+  /* ডিফল্ট = pastel, আর ইউজারের OS ডার্ক হলে = business */
+  themes: fantasy --default, business --prefersdark;
+}
 
 body {
   /* margin: 0;

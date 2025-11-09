@@ -1,4 +1,5 @@
 import React from 'react';
+import { Star, Clapperboard, LibraryBig, LogIn } from 'lucide-react';
 
 
 
@@ -15,15 +16,11 @@ const Navbar = () => {
             <ul
                 tabIndex="-1"
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><a>Item 1</a></li>
-                <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                </ul>
-                </li>
-                <li><a>Item 3</a></li>
+                {/* Navmenu small */}
+                <li><a><Star size={16} color="#8000ff" strokeWidth={1.5} />Home</a></li>
+                <li><a><Clapperboard size={16} color="#8000ff" strokeWidth={1.5} /> All Movies</a></li>
+                <li><a><LibraryBig size={16} color="#8000ff" strokeWidth={1.5} />My Collection Movies</a></li>
+                <li><a><LogIn size={16} color="#8000ff" strokeWidth={1.5} />Login / Register</a></li>
             </ul>
             </div>
             <div className="navbar-start">
@@ -32,17 +29,11 @@ const Navbar = () => {
 
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                <li><a>Item 1</a></li>
-                <li>
-                    <details>
-                    <summary>Parent</summary>
-                    <ul className="p-2">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
-                    </ul>
-                    </details>
-                </li>
-                <li><a>Item 3</a></li>
+                {/* Navmenu md to lg  */}
+                    <li><a><Star size={16} color="#8000ff" strokeWidth={1.5} />Home</a></li>
+                    <li><a><Clapperboard size={16} color="#8000ff" strokeWidth={1.5} /> All Movies</a></li>
+                    <li><a><LibraryBig size={16} color="#8000ff" strokeWidth={1.5} />My Collection Movies</a></li>
+                    <li><a><LogIn size={16} color="#8000ff" strokeWidth={1.5} />Login/Register</a></li>
                 </ul>
             </div>           
             {/* Login button and Profile menu section starts here */}
@@ -51,16 +42,16 @@ const Navbar = () => {
             <input type="checkbox"
             className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"/>
                 <a className="btn btn-xs md:btn-md">Button</a>
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
+                <div className="dropdown dropdown-end">
+                    <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
                             <img alt="Profile Picture" src={defaultPropic} />
                         </div>
                     </div>
                     <ul
-                        tabindex="-1"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a class="justify-between">Profile</a></li>
+                        tabIndex="-1"
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li><a className="justify-between">Profile</a></li>
                         <li><a>Settings</a></li>
                         <li><a>Logout</a></li>
                     </ul>

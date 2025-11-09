@@ -14,7 +14,7 @@ const AllMovies = () => {
  //Data আনা হলো
 const{loading, err, movies} = useDataMan();
 
-if(err) return <ErrorPage></ErrorPage>
+if(err) return <ErrorPage err={err}></ErrorPage>
   
         
     return (

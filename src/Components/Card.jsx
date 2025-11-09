@@ -8,7 +8,7 @@ const Card = ({movie}) => {
             <figure>
                 <img src={movie.posterUrl} alt={movie.title}  />
             </figure>
-            <div className="card-body">
+            <div className="card-body justify-between">
                 <h2 className="card-title">{movie.title}</h2>
                 <p>{movie.plotSummary}</p>
                 <div className="card-actions justify-between">
@@ -16,8 +16,8 @@ const Card = ({movie}) => {
                 <span><Drama  size={20} color="#0080ff" /> {movie.genre}</span>
                 <span><CalendarClock size={20} color="#ff0000" />{movie.releaseYear}</span>
                 
-                <button className="btn btn-primary">Details</button>
                 </div>
+                <button className="btn btn-primary btn-sm">Details</button>
             </div>
         </div>   
         </>

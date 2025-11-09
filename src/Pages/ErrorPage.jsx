@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import errorImage from '../../public/assets/img/errorImage.jpg';
 
-const ErrorPage = () => {
+const ErrorPage = ({err}) => {
  //Page Title
  const title = useEffect(()=>{
    document.title = 'Error Page | Movie Master Pro '
@@ -11,7 +11,9 @@ const ErrorPage = () => {
     return (
         <>
         {/* <Navbar></Navbar> */}
+        
         <div className='mx-auto flex justify-center'>
+            <p className='text-center font-extrabold text-8xl'>{err}</p>
             <img className='w-[40%] h-[30%]' src={errorImage} alt="" />
         </div>
 

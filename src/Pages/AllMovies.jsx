@@ -16,8 +16,7 @@ const{loading, err, movies} = useDataMan();
 
 if(err) return <ErrorPage err={err}></ErrorPage>
   
-let location = useLocation();
-console.log(location);
+
 
         
     return (

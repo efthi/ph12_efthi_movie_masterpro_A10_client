@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Mail, SquareAsterisk, LogIn, Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
  //Page Title
@@ -6,58 +7,61 @@ const Login = () => {
    document.title = 'Login | Movie Master Pro '
  }, []);
 
+//
+const [showpass, setShwopass] = useState(false);
+
+
+//show/hide password toggle এর ফাংশন এখানে
+const showHidePass = (e) => {
+    e.preventDefault();
+   // console.log(showpass);
+    setShwopass(!showpass);
+};
+
     return (
-        <div>
-            <p className="text-center m-10 border-2 border-yellow-700">Login Page</p>
-            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                <legend className="fieldset-legend">Login</legend>
+        <>
+         <div className='flex justify-center m-10'>
+            <div className='shadow-indigo-600 shadow-2xl'>
+                <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+                <p className='font-bold text-xl text-center'>Welcome! Please Login </p>
+                    <label className="label">Email</label>
+                    <label className='input'><Mail color="#ff0000" />
+                        <input type="email" className="input" placeholder="Email" />
+                    </label>
 
-                <label className="label">Email</label>
-                <input type="email" className="input" placeholder="Email" />
+                    <div className=''> 
+                        {/* আগের প্রজেক্টে position সেট করে নিচের password hide/show বাটনকে পজিশনিং করা হয়েছিল, কিন্তু daisyUI এর <label> এর কারণে আর লাগে নাই */}
+                        <label className="label">Password</label>
+                        <label className="input">
+                            <SquareAsterisk color="#ff0000" />
+                            <input type={ showpass ? 'text' : 'password'} className="input" placeholder="Password" />
+                            <button onClick={showHidePass}  className="btn btn-xs">
+                                {showpass ? (<Eye color="#ff0000" />) : (<EyeOff color="#ff0000" />)}
+                            </button>
+                        </label>
+                    </div>
 
-                <label className="label">Password</label>
-                <input type="password" className="input" placeholder="Password" />
+                    {/* ⬇️ NEW: Forget password লিংক (রাউটে পাঠাবে) */}
+                    <div className="mt-2 text-right">
+                        <button type="button" onClick='' className="btn btn-link btn-xs">
+                        Forgot password?
+                        </button>
+                    </div>
 
-                <button className="btn btn-neutral mt-4">Login</button>
-            </fieldset>
-                <label className="input">
-    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <g
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        strokeWidth="2.5"
-        fill="none"
-        stroke="currentColor"
-        >
-        <circle cx="11" cy="11" r="8"></circle>
-        <path d="m21 21-4.3-4.3"></path>
-        </g>
-    </svg>
-    <input type="search" className="grow" placeholder="Search" />
-    <kbd className="kbd kbd-sm">⌘</kbd>
-    <kbd className="kbd kbd-sm">K</kbd>
-    </label>
-    <label className="input">
-    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <g
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        strokeWidth="2.5"
-        fill="none"
-        stroke="currentColor"
-        >
-        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-        <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-        </g>
-    </svg>
-    <input type="text" className="grow" placeholder="index.php" />
-    </label>
-    <label className="input">
-    Path
-    <input type="text" className="grow" placeholder="src/app/" />
-    <span className="badge badge-neutral badge-xs">Optional</span>
-    </label>
+                    <button className="btn btn-neutral mt-4"><LogIn color="#ff0000" /> Login</button>
+                    <div className="divider">OR</div>
+                    {/* Google */}
+                    <button className="btn bg-white text-black border-[#e5e5e5]">
+                        <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
+                        Login with Google
+                    </button>
+
+                </fieldset>
+
+            </div>
         </div>
+        </>
+       
     );
 };
 

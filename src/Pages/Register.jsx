@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Mail, SquareAsterisk, Image, Eye, EyeOff } from 'lucide-react';
-import { Link, NavLink } from 'react-router';
+import React, { use, useEffect, useState } from 'react';
+import { Mail, SquareAsterisk, Image, Eye, EyeOff, User } from 'lucide-react';
+import { Link, NavLink, useNavigate } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
+import { AuthContext } from '../Context/AuthContext';
 
 const Register = () => {
 //Page Title
@@ -8,7 +10,7 @@ const title = useEffect(()=>{
     document.title = 'Register | Movie Master Pro '
   }, []);
 
-//
+//show/hide এর জন্য state
 const [showpass, setShwopass] = useState(false);
 
 //show/hide password toggle এর ফাংশন এখানে
@@ -18,9 +20,37 @@ const showHidePass = (e) => {
     setShwopass(!showpass);
 };
 
-//handleSignUp
+//এটা দিয়ে url Navigation এর মান ধরার জন্য, পরে navigate এ ভ্যালু দিয়ে লিংক সেট হবে
+const navigate = useNavigate(); 
+
+const {createUser} = use(AuthContext); //createUser কে AuthContext এর মাধ্যমে এখানে আনা হলো
+//handleSignUp আজ হবে এখানে
 const handleSignUp =(e) => {
     e.preventDefault();
+    const displayName = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const photoURL = e.target.imageurl.value;
+    //এখানে RegEx এর কাজ বাকী আছে
+
+        console.log(displayName, email, password, photoURL);
+        //AuthContext এর মাধ্যমে আনা createUser দিয়ে কাজ হবে এখানে
+        createUser(email, password)
+            .then(result => {
+                console.log(result); //test এর জন্য
+                console.log(e.message);
+                
+                //e.target.reset();
+                toast.success(`Congrats! ${displayName} Registration complete, Login now!`, );
+                setTimeout(() => {
+                    navigate('/login') //Login পেইজে নিয়ে যাবে useNavigate() থেকে কাজ করছে
+                }, 2000);
+            })
+            .catch((e) => {
+                //console.log(e);
+                toast.error(e.message)
+            })
+    
 }
 
 
@@ -28,9 +58,14 @@ const handleSignUp =(e) => {
         <>
         <div className='flex justify-center m-10'>
         <div className='shadow-indigo-600 shadow-2xl'>
-            <form onSubmit=''>
+            <form onSubmit={handleSignUp}>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
                     <p className='font-bold text-xl text-center'>To Join, Register  </p>
+                    {/* Email section */}
+                    <label className="label">Name</label>
+                        <label className='input'><User color="#ff0000" />
+                            <input type="name" className="input input-primary" name="name" placeholder="Your Name" />
+                    </label>
                     {/* Email section */}
                     <label className="label">Email</label>
                         <label className='input'><Mail color="#ff0000" />
@@ -65,6 +100,13 @@ const handleSignUp =(e) => {
                         Login with Google
                     </button>
                 </fieldset>
+                <ToastContainer position="top-center"
+                    autoClose={6000}
+                    closeOnClick={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"/>
             </form> 
         </div> 
         </div>

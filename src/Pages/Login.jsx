@@ -18,15 +18,24 @@ const showHidePass = (e) => {
     setShwopass(!showpass);
 };
 
+//Login এর প্রসেস হ্যান্ডেল হবে এখান থেকে
+const handleLogin =(e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);    
+}
+
     return (
         <>
          <div className='flex justify-center m-10'>
             <div className='shadow-indigo-600 shadow-2xl'>
+            <form onSubmit={handleLogin}>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
                 <p className='font-bold text-xl text-center'>Welcome! Please Login </p>
                     <label className="label">Email</label>
                     <label className='input'><Mail color="#ff0000" />
-                        <input type="email" className="input" placeholder="Email" />
+                        <input type="email" className="input" name="email" placeholder="Email" />
                     </label>
 
                     <div className=''> 
@@ -34,8 +43,8 @@ const showHidePass = (e) => {
                         <label className="label">Password</label>
                         <label className="input">
                             <SquareAsterisk color="#ff0000" />
-                            <input type={ showpass ? 'text' : 'password'} className="input" placeholder="Password" />
-                            <button onClick={showHidePass}  className="btn btn-xs">
+                            <input type={ showpass ? 'text' : 'password'} className="input" name="password" placeholder="Password" />
+                            <button onClick={showHidePass}  className="btn btn-xs bg-transparent">
                                 {showpass ? (<Eye color="#ff0000" />) : (<EyeOff color="#ff0000" />)}
                             </button>
                         </label>
@@ -43,12 +52,12 @@ const showHidePass = (e) => {
 
                     {/* ⬇️ NEW: Forget password লিংক (রাউটে পাঠাবে) */}
                     <div className="mt-2 text-right">
-                        <button type="button" onClick='' className="btn btn-link btn-xs">
+                        <button type="button"  className="btn btn-link btn-xs text-sm">
                         Forgot password?
                         </button>
                     </div>
 
-                    <button className="btn btn-neutral mt-4"><LogIn color="#ff0000" /> Login</button>
+                    <button type='submit' className="btn btn-neutral mt-4"><LogIn color="#ff0000" /> Login</button>
                     <div className="divider">OR</div>
                     {/* Google */}
                     <button className="btn bg-white text-black border-[#e5e5e5]">
@@ -57,7 +66,7 @@ const showHidePass = (e) => {
                     </button>
 
                 </fieldset>
-
+            </form>
             </div>
         </div>
         </>

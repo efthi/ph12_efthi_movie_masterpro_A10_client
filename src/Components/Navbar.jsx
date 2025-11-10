@@ -10,7 +10,7 @@ const defaultPropic ='https://media.istockphoto.com/id/1300845620/vector/user-ic
 
 const Navbar = () => {
 
-    const {user} =use(AuthContext);//user কে নিয়ে আসা হয়েছে
+    const {user, SignOutUser} =use(AuthContext);//user কে নিয়ে আসা হয়েছে
 
 const links = <>
             <li><NavLink to='/' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""} ><Star size={16} color="#8000ff" strokeWidth={1.5} />Home</NavLink></li>
@@ -24,7 +24,13 @@ const links = <>
             <li><NavLink to='/login' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""}><LogIn size={16} color="#8000ff" strokeWidth={1.5} />Login</NavLink></li>
             
             }
-            </>
+            </>;
+//signOut handle
+const handleSignOut = () => {
+    SignOutUser()
+    .then(console.log('User Sign Out!'))
+    .catch(error => console.log(error))
+}
 
     return (
         <>
@@ -72,8 +78,8 @@ const links = <>
                         <ul
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li><a className="justify-between">Profile</a></li>
-                            <li><a>Logout</a></li>
+                            <li><NavLink to='userprofile' className="justify-between">Profile</NavLink></li>
+                            <li><a onClick={handleSignOut}>Logout</a></li>
                         </ul>
                         </>
                     )}

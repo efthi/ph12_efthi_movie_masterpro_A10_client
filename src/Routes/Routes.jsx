@@ -8,6 +8,7 @@ import Wishlist from "../Pages/Wishlist";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import MovieDetails from "../Pages/MovieDetails";
+import UserProfile from "../Pages/UserProfile";
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
             {path:'wishlist', element: <Wishlist></Wishlist> },
             {path:'login', element: <Login></Login> },
             {path:'register', element: <Register></Register> },
+            {path:'userprofile', element: <UserProfile></UserProfile> },
 
             {
                 path: "/*", element: <ErrorPage />

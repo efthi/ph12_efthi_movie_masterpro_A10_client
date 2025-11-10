@@ -25,23 +25,25 @@ console.log(data);
             <div className='flex flex-col gap-10 bg-base-100/80 p-5 li rounded-box shadow-indigo-600 shadow-2xl'>
               <h3 className='font-semibold'>ID: {data.id}</h3>
               <h2 className='font-bold text-3xl'>{data.title}</h2>
-              <h4 className='font-medium italic text-xl'>Summary: {data.plotSummary}</h4>
+              <h4 className='font-medium text-xl'>Summary: <span className="italic">{data.plotSummary}</span></h4>
               <p>Director: {data.director}</p>
               <p>Cast: {data.cast}</p>
             </div>
             <div className='flex flex-col gap-5 bg-base-100/80 p-5 rounded-box shadow-indigo-600 shadow-2xl'>
-              <span><CalendarClock size={32} color="#ff0000" /> {data.releaseYear}</span>
-              <span><Drama  size={32} color="#0080ff" /> {data.genre}</span>
-              <span><Star size={32} color="#00ff00" /> {data.rating}</span>
+              <div className="flex gap-5 justify-center">
+                <span><Star size={32} color="#00ff00" /> {data.rating}</span>
+                <span><Drama  size={32} color="#0080ff" /> {data.genre}</span>
+                <span><CalendarClock size={32} color="#ff0000" /> {data.releaseYear}</span>
+              </div>
               <span>Duration: {data.duration}</span>
               <span>Lang: {data.language}</span>
               <span>Country: {data.country}</span>
-              <span>EIDR: {data.eidr}</span>
+              <span className='code'>EIDR: {data.eidr}</span>
               <span>Added by: {data.addedBy}</span>
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row lg:flex-row gap-2">
                 <Link to='/allmovies' className='btn btn-primary'>Add to collection</Link>
                 <Link to='/allmovies' className='btn btn-secondary'>Wishlist</Link>
-                <Link to='/allmovies' className='btn '>Back</Link>
+                <Link to='/allmovies' className='btn btn-accent'>Back</Link>
               </div>
             </div>
           </div>   

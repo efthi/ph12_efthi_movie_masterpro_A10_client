@@ -22,7 +22,7 @@ console.log(data);
             <div className='shadow-indigo-600 shadow-2xl'>
               <img className='rounded-2xl' src={data.posterUrl} alt={data.title} />
             </div>
-            <div className='flex flex-col gap-10 bg-base-100/80 p-5 li rounded-box shadow-indigo-600 shadow-2xl'>
+            <div className='flex flex-col gap-10 bg-base-100/80 p-5 rounded-box shadow-indigo-600 shadow-2xl'>
               <h3 className='font-semibold'>ID: {data.id}</h3>
               <h2 className='font-bold text-3xl'>{data.title}</h2>
               <h4 className='font-medium text-xl'>Summary: <span className="italic">{data.plotSummary}</span></h4>

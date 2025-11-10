@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, 
+    onAuthStateChanged, signInWithEmailAndPassword, 
+    signInWithPopup} from 'firebase/auth';
 import { auth } from '../Firebase/firebase.init';
 
 const AuthProvider = ( {children} ) => {
@@ -19,15 +21,30 @@ const AuthProvider = ( {children} ) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
+    //এটা আরেকটু বুঝতে হবে, উপরে user এর মান সেট করতেছে
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setLoading(false)
+        })
+        return () => {
+            unsubscribe()
+        }
+    }, []);
     
-    
+    //SignIn with Google
+    const googleProvider = new GoogleAuthProvider(); 
+    const signInWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider)
+    }
 
     const authInfo = {
         user,
         loading,
         createUser,
         signInUser,
-
+        signInWithGoogle,
     }
     
     return (

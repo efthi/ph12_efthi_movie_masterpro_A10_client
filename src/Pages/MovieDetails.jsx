@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {useLocation} from 'react-router';
+import {Link, useLocation} from 'react-router';
 import { Star, Drama , CalendarClock } from 'lucide-react';
 
 const MovieDetails = () => {
@@ -30,14 +30,19 @@ console.log(data);
               <p>Cast: {data.cast}</p>
             </div>
             <div className='flex flex-col gap-5 bg-base-100/80 p-5 rounded-box shadow-indigo-600 shadow-2xl'>
-              <span><CalendarClock size={20} color="#ff0000" /> {data.releaseYear}</span>
-              <span><Drama  size={20} color="#0080ff" /> {data.genre}</span>
-              <span><Star size={20} color="#00ff00" /> {data.rating}</span>
+              <span><CalendarClock size={32} color="#ff0000" /> {data.releaseYear}</span>
+              <span><Drama  size={32} color="#0080ff" /> {data.genre}</span>
+              <span><Star size={32} color="#00ff00" /> {data.rating}</span>
               <span>Duration: {data.duration}</span>
               <span>Lang: {data.language}</span>
               <span>Country: {data.country}</span>
               <span>EIDR: {data.eidr}</span>
               <span>Added by: {data.addedBy}</span>
+              <div className="flex gap-2">
+                <Link to='/allmovies' className='btn btn-primary'>Add to collection</Link>
+                <Link to='/allmovies' className='btn btn-secondary'>Wishlist</Link>
+                <Link to='/allmovies' className='btn '>Back</Link>
+              </div>
             </div>
           </div>   
          </div>

@@ -24,7 +24,7 @@ const showHidePass = (e) => {
 //এটা দিয়ে url Navigation এর মান ধরার জন্য, পরে navigate এ ভ্যালু দিয়ে লিংক সেট হবে
 const navigate = useNavigate(); 
 
-const {signInUser, signInWithGoogle} = use(AuthContext); //signIn কে AuthContext এর মাধ্যমে এখানে আনা হলো
+const {signInUser, signInWithGoogle, user} = use(AuthContext); //signIn কে AuthContext এর মাধ্যমে এখানে আনা হলো
 //Login এর প্রসেস হ্যান্ডেল হবে এখান থেকে
 const handleLogin =(e) => {
     e.preventDefault();
@@ -49,6 +49,9 @@ const handleGoogleLogin =() => {
         })
         .catch(error=> console.log(error))
 }
+
+console.log(user);
+
     return (
         <>
          <div className='flex justify-center m-10'>

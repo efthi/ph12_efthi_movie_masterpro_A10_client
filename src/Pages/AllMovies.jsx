@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useLocation } from 'react-router'
 import Card from '../Components/Card';
 import Spinner from '../Components/Spinner';
 import useDataMan from '../hooks/useDataman';
 import ErrorPage from './ErrorPage';
+import { AuthContext } from '../Context/AuthContext';
 
 const AllMovies = () => {
  //Page Title
@@ -15,7 +16,7 @@ const AllMovies = () => {
 const{loading, err, movies} = useDataMan();
 
 if(err) return <ErrorPage err={err}></ErrorPage>
-  
+
 
 
         

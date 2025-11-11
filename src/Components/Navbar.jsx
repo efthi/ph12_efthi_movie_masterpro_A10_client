@@ -1,8 +1,9 @@
 import React, { use } from 'react';
 import { Star, Clapperboard, LibraryBig,ListChecks , LogIn } from 'lucide-react';
-import { NavLink } from 'react-router';
+import { Navigate, NavLink, useNavigate } from 'react-router';
 import ThemeChange from './ThemeChange';
 import { AuthContext } from '../Context/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 
@@ -25,10 +26,18 @@ const links = <>
             
             }
             </>;
+
+const navigate = useNavigate();
+
 //signOut handle
 const handleSignOut = () => {
     SignOutUser()
-    .then(console.log('User Sign Out!'))
+    .then(() => {
+        alert('Logout Successful!')
+        setTimeout(()=> {         
+        navigate('/login')
+        }, 1000);
+    })
     .catch(error => console.log(error))
 }
 

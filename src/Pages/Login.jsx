@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState} from 'react';
 import { Mail, SquareAsterisk, LogIn, Eye, EyeOff } from 'lucide-react';
-import { Link, NavLink,useNavigate } from 'react-router';
+import { Link, NavLink,useLocation,useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Context/AuthContext';
 
@@ -21,6 +21,11 @@ const showHidePass = (e) => {
     setShwopass(!showpass);
 };
 
+//locattion এর ডেটা ধরার জন্য
+let location = useLocation();
+console.log(location);
+
+
 //এটা দিয়ে url Navigation এর মান ধরার জন্য, পরে navigate এ ভ্যালু দিয়ে লিংক সেট হবে
 const navigate = useNavigate(); 
 
@@ -35,8 +40,11 @@ const handleLogin =(e) => {
         .then(result=> {
             console.log(result.user);
             toast.success('Login Successful!');
+            setTimeout(()=> {
             //navigate(from, {replace:true})
-            navigate('/allmovies')
+            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
+            navigate(location.state ||'/allmovies')
+            }, 2000);
         })
 }
 
@@ -45,7 +53,12 @@ const handleGoogleLogin =() => {
     signInWithGoogle()
         .then(result => {
             console.log(result);
-            
+            toast.success('Login Successful!');
+            setTimeout(()=> {
+            //navigate(from, {replace:true})
+            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
+            navigate(location.state ||'/allmovies')
+            }, 2000);
         })
         .catch(error=> console.log(error))
 }

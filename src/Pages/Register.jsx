@@ -58,6 +58,12 @@ const handleGoogleLogin =() => {
     signInWithGoogle()
         .then(result => {
             console.log(result);
+            toast.success('Login Successful!');
+            setTimeout(()=> {
+            //navigate(from, {replace:true})
+            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
+            navigate(location.state ||'/allmovies')
+            }, 2000);
             
         })
         .catch(error=> console.log(error))

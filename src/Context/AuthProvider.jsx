@@ -56,9 +56,10 @@ const AuthProvider = ( {children} ) => {
     }
     
     return (
-        <AuthContext value = {authInfo}>
+        // এখানে Provider লিখি নাই প্রথমে
+        <AuthContext.Provider value = {authInfo}>  
             {children}
-        </AuthContext>
+        </AuthContext.Provider>
     );
 };
 

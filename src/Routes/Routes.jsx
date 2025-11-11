@@ -9,6 +9,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import MovieDetails from "../Pages/MovieDetails";
 import UserProfile from "../Pages/UserProfile";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -19,16 +20,19 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage></ErrorPage>,
         children:[
             {index: true, element: <Home />,},
+            /*Public Routes এখানে */
             {path:'allmovies', element: <AllMovies></AllMovies> },
-            {path:'allmovies/moviedetails/:id', element: <MovieDetails></MovieDetails> },
-            {path:'mycollection', element: <MyCollection></MyCollection> },
-            {path:'wishlist', element: <Wishlist></Wishlist> },
             {path:'login', element: <Login></Login> },
             {path:'register', element: <Register></Register> },
-            {path:'userprofile', element: <UserProfile></UserProfile> },
+
+            /**Private Routes এখানে */
+            {path:'allmovies/moviedetails/:id', element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute> },
+            {path:'mycollection', element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute> },
+            {path:'wishlist', element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute> },
+            {path:'userprofile', element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute> },
 
             {
-                path: "/*", element: <ErrorPage />
+                path: "*", element: <ErrorPage />
             },
         ]
     }

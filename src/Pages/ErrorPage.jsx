@@ -2,13 +2,20 @@ import React, { useEffect } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import errorImage from '../../public/assets/img/errorImage.jpg';
+import { useRouteError , isRouteErrorResponse } from 'react-router';
 
 const ErrorPage = ({err}) => {
  //Page Title
  const title = useEffect(()=>{
    document.title = 'Error Page | Movie Master Pro '
  }, []);
-    return (
+
+ const error = useRouteError();
+ 
+console.log(err);
+
+
+ return (
         <>
         {/* <Navbar></Navbar> */}
         

@@ -29,7 +29,7 @@ console.log(location);
 //এটা দিয়ে url Navigation এর মান ধরার জন্য, পরে navigate এ ভ্যালু দিয়ে লিংক সেট হবে
 const navigate = useNavigate(); 
 
-const {signInUser, signInWithGoogle, user} = use(AuthContext); //signIn কে AuthContext এর মাধ্যমে এখানে আনা হলো
+const {signInUser, signInWithGoogle, user, loading} = use(AuthContext); //signIn কে AuthContext এর মাধ্যমে এখানে আনা হলো
 //Login এর প্রসেস হ্যান্ডেল হবে এখান থেকে
 const handleLogin =(e) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ console.log(user);
 
     return (
         <>
-         <div className='flex justify-center m-10'>
+         <div className={loading ? 'hidden' : 'flex justify-center m-10 '}>
             <div className='shadow-indigo-600 shadow-2xl bg-base-200 border-base-300 rounded-box w-xs border p-4'>
             <form onSubmit={handleLogin}>
                 <fieldset className="fieldset ">

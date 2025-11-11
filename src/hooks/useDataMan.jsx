@@ -11,7 +11,7 @@ const useDataMan = () => {
 
     useEffect( () => {
         setLoading(true);
-        axios('/public/assets/data/hollywood.json')
+        axios('/public/assets/data/movies_all.json')
             .then(res => setMovies(res.data))
                 .catch(err => setErr(err))
                 .finally(() => setLoading(false))

@@ -10,6 +10,7 @@ import Register from "../Pages/Register";
 import MovieDetails from "../Pages/MovieDetails";
 import UserProfile from "../Pages/UserProfile";
 import PrivateRoute from "./PrivateRoute";
+import GuestRoute from "./GuestRoute";
 
 
 const router = createBrowserRouter([
@@ -22,8 +23,10 @@ const router = createBrowserRouter([
             {index: true, element: <Home />,},
             /*Public Routes এখানে */
             {path:'allmovies', element: <AllMovies></AllMovies> },
-            {path:'login', element: <Login></Login> },
-            {path:'register', element: <Register></Register> },
+            
+            //Only Guest, যাতে User লগিন অবস্থায় এক্সেস না পায়
+            {path:'login', element: <GuestRoute><Login></Login></GuestRoute> },
+            {path:'register', element: <GuestRoute><Register></Register> </GuestRoute>},
 
             /**Private Routes এখানে */
             {path:'allmovies/moviedetails/:id', element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute> },

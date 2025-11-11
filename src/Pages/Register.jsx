@@ -23,7 +23,7 @@ const showHidePass = (e) => {
 //এটা দিয়ে url Navigation এর মান ধরার জন্য, পরে navigate এ ভ্যালু দিয়ে লিংক সেট হবে
 const navigate = useNavigate(); 
 
-const {createUser, signInWithGoogle} = use(AuthContext); //createUser কে AuthContext এর মাধ্যমে এখানে আনা হলো
+const {createUser, signInWithGoogle, loading} = use(AuthContext); //createUser কে AuthContext এর মাধ্যমে এখানে আনা হলো
 //handleSignUp আজ হবে এখানে
 const handleSignUp =(e) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ const handleGoogleLogin =() => {
 
     return (
         <>
-        <div className='flex justify-center m-10'>
+        <div className={loading ? 'hidden' : 'flex justify-center m-10'}>
         <div className='shadow-indigo-600 shadow-2xl bg-base-200 border-base-300 rounded-box w-xs border p-4'>
             <form onSubmit={handleSignUp}>
                 <fieldset className="fieldset ">

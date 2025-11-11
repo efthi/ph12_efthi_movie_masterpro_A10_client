@@ -11,7 +11,8 @@ const defaultPropic ='https://media.istockphoto.com/id/1300845620/vector/user-ic
 
 const Navbar = () => {
 
-    const {user, SignOutUser} =use(AuthContext);//user কে নিয়ে আসা হয়েছে
+const {user, loading, SignOutUser} =use(AuthContext);//user কে নিয়ে আসা হয়েছে
+console.log('loading:',loading);
 
 const links = <>
             <li><NavLink to='/' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""} ><Star size={16} color="#8000ff" strokeWidth={1.5} />Home</NavLink></li>
@@ -21,7 +22,7 @@ const links = <>
                 <li><NavLink to='/wishlist' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""} ><ListChecks  size={16} color="#8000ff" strokeWidth={1.5} />Wishlist</NavLink></li>
                 </>
             }
-            { !user &&
+            { loading ? (<span className="loading loading-bars loading-xs ml-3"></span>) : user ? (<></>) :
             <li><NavLink to='/login' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""}><LogIn size={16} color="#8000ff" strokeWidth={1.5} />Login</NavLink></li>
             
             }
@@ -51,7 +52,7 @@ const handleSignOut = () => {
             <ul
                 tabIndex="-1"
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                {/* Navmenu small */}
+                {/* Nav menu small */}
                 {links}
              </ul>
             </div>
@@ -73,7 +74,8 @@ const handleSignOut = () => {
                     className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"/> */}
                 
                 {/* user login থাকলে register button আসবে না */}
-                { user ? <></> : <NavLink to="/register" className="btn btn-xs md:btn-md">Register</NavLink> }
+                { loading ? (<span className="loading loading-spinner text-neutral"></span>) : user ? (<></>) : 
+                 <NavLink to="/register" className="btn btn-xs md:btn-md">Register</NavLink> }
                
                 <div className="dropdown dropdown-end">
                     {/* user login না থাকলে Profile button আসবে না */}

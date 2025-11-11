@@ -19,7 +19,7 @@ const Card = ({movie}) => {
                 
                 </div>
                 {/* <Link to={`${movie.id}`} className="btn btn-primary btn-sm">Details</Link> */}
-                <Link state={movie} to={`moviedetails/${movie.id}`} className="btn btn-primary btn-sm">Details</Link>
+                <Link state={movie} to={`moviedetails/${movie._id}`} className="btn btn-primary btn-sm">Details</Link>
             </div>
         </div>   
         </>

@@ -22,8 +22,11 @@ const message =
         <>
         {/* <Navbar></Navbar> */}
         
-        <div className='mx-auto flex flex-col md:flex-row justify-center items-center'>
-            <p className='text-center font-extrabold text-4xl'>{message}</p>
+        <div className='container max-w-10/12 mx-auto flex flex-col gap-5 md:flex-row justify-center items-center'>
+            <div className=''> 
+              <code className='text-center font-extrabold text-2xl'>{message}</code>
+              <a className='btn btn-primary' href="/">Back to Home</a>
+            </div>
             <img className='w-[40%] h-[30%]' src={errorImage} alt="error image" />
         </div>
 

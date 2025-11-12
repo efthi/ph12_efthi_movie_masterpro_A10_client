@@ -12,6 +12,8 @@ import UserProfile from "../Pages/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import GuestRoute from "./GuestRoute";
 import EditMovie from "../Components/EditMovie";
+import AddMovie from "../Components/AddMovie";
+import NotFound from "../Components/NotFound";
 
 
 const router = createBrowserRouter([
@@ -31,13 +33,14 @@ const router = createBrowserRouter([
 
             /**Private Routes এখানে */
             {path:'allmovies/moviedetails/:id', element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute> },
+            {path:'addmovie', element: <PrivateRoute><AddMovie></AddMovie></PrivateRoute>},
+            {path:'editmovie/:id', element: <PrivateRoute><EditMovie></EditMovie></PrivateRoute>},
             {path:'mycollection', element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute> },
             {path:'wishlist', element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute> },
-            {path:'editmovie/:id', element: <PrivateRoute><EditMovie></EditMovie></PrivateRoute>},
             {path:'userprofile', element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute> },
 
             {
-                path: "*", element: <ErrorPage />
+                path: "*", element: <NotFound></NotFound>
             },
         ]
     }

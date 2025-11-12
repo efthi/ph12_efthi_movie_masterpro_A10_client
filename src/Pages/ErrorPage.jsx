@@ -20,7 +20,7 @@ const message =
 
  return (
         <>
-        {/* <Navbar></Navbar> */}
+        <Navbar></Navbar>
         
         <div className='container max-w-10/12 mx-auto flex flex-col gap-5 md:flex-row justify-center items-center'>
             <div className=''> 
@@ -30,7 +30,7 @@ const message =
             <img className='w-[40%] h-[30%]' src={errorImage} alt="error image" />
         </div>
 
-        {/* <Footer></Footer> */}
+        <Footer></Footer>
         </>
     );
 };

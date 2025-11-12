@@ -13,7 +13,7 @@ const Card = ({movie}) => {
                 <h2 className="card-title">{movie.title}</h2>
                 <p>{movie.plotSummary}</p>
                 <div className="card-actions justify-between">
-                <span><Star size={20} color="#00ff00" /> {movie.rating.toFixed(1)}</span>
+                <span><Star size={20} color="#00ff00" /> {movie.rating}</span>
                 <span><Drama  size={20} color="#0080ff" /> {movie.genre}</span>
                 <span><CalendarClock size={20} color="#ff0000" />{movie.releaseYear}</span>
                 

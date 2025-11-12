@@ -47,6 +47,10 @@ if (!movie) return <div className="p-6">No movie found</div>;
               <h4 className='font-medium text-xl'>Summary: <span className="italic">{movie.plotSummary}</span></h4>
               <p>Director: {movie.director}</p>
               <p>Cast: {movie.cast}</p>
+              <div className="flex flex-col md:flex-row lg:flex-row gap-2">
+                <Link to='/mycollection' className='btn btn-primary'>Add to collection</Link>
+                <Link to='/mycollection' className='btn btn-secondary'>Wishlist</Link>
+              </div>
             </div>
             <div className='flex flex-col gap-5 bg-base-100/80 p-5 rounded-box shadow-indigo-600 shadow-2xl'>
               <div className="flex gap-5 justify-center">
@@ -60,8 +64,7 @@ if (!movie) return <div className="p-6">No movie found</div>;
               <span className='code'>EIDR: {movie.eidr}</span>
               <span>Added by: {movie.addedBy}</span>
               <div className="flex flex-col md:flex-row lg:flex-row gap-2">
-                <Link to='/allmovies' className='btn btn-primary'>Add to collection</Link>
-                <Link to='/allmovies' className='btn btn-secondary'>Wishlist</Link>
+                <Link to={`/editmovie/${movie._id}`} className='btn btn-info'>Edit</Link>
                 <Link to='/allmovies' className='btn btn-accent'>Back</Link>
               </div>
             </div>

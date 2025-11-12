@@ -11,6 +11,7 @@ import MovieDetails from "../Pages/MovieDetails";
 import UserProfile from "../Pages/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import GuestRoute from "./GuestRoute";
+import EditMovie from "../Components/EditMovie";
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
             {path:'allmovies/moviedetails/:id', element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute> },
             {path:'mycollection', element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute> },
             {path:'wishlist', element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute> },
+            {path:'editmovie/:id', element: <PrivateRoute><EditMovie></EditMovie></PrivateRoute>},
             {path:'userprofile', element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute> },
 
             {

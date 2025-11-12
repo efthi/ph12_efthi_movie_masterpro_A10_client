@@ -45,6 +45,16 @@ const handleLogin =(e) => {
             navigate(location.state ||'/allmovies')
             }, 2000);
         })
+        .catch((error) => {
+            console.log(error);
+            toast.success('Login Failed')
+            setTimeout(()=> {
+            //navigate(from, {replace:true})
+            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
+            navigate('/login')
+            }, 2000);
+            
+        })
 }
 
 //Googleদিয়ে লগিন
@@ -59,7 +69,15 @@ const handleGoogleLogin =() => {
             navigate(location.state ||'/allmovies')
             }, 2000);
         })
-        .catch(error=> console.log(error))
+        .catch(error=> {
+            console.log(error);
+            toast.error(error);
+            setTimeout(()=> {
+            //navigate(from, {replace:true})
+            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
+            navigate('/login')
+            }, 2000);
+        })
 }
 
     return (

@@ -1,13 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useLocation } from 'react-router'
+
+import { AuthContext } from '../Context/AuthContext';
 
 const MyCollection = () => {
  //Page Title
- const title = useEffect(()=>{
+useEffect(()=>{
    document.title = 'My Collection | Movie Master Pro '
  }, []);
-const location= useLocation();
-console.log(location);
+// const location= useLocation();
+// console.log(location);
+const {user} =use(AuthContext);
+
+//fetching the data
+  useEffect(()=>{
+    //setLoading(true);
+    fetch(`http://localhost:3000/mycollectiondata?email=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+    //   .catch((err) => setError(err))
+    //   .finally(() => setLoading(false));
+
+  }, [user]);
+
+  const [movie, setMovie] = useState([]);
+
+  console.log(user.email);
+
+  
 
     return (
         <div>

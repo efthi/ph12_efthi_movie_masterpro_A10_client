@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Link, useLocation, useParams} from 'react-router';
 import { Star, Drama , CalendarClock } from 'lucide-react';
 import Spinner from '../Components/Spinner';
+import Swal from "sweetalert2";
 
 const MovieDetails = () => {
 
@@ -34,6 +35,37 @@ if (loading) return <span className="container mx-auto loading loading-bars load
 if (error) return <div className="p-6 text-red-500">Error: {error}</div>;
 if (!movie) return <div className="p-6">No movie found</div>;
 
+const handleDel = (id) => {
+
+    Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:3000/moviedetails/${id}`, {
+        method: "DELETE",         
+      })
+      .then((res) => res.json())
+      .then(()=>{
+        Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      });
+      })
+      .catch((err) => console.log(err)
+      )
+      
+    }
+  });
+   
+}
+
     return (
         <>
          <div className="container mx-auto max-w-[90%] m-10 ">
@@ -47,8 +79,8 @@ if (!movie) return <div className="p-6">No movie found</div>;
               <h4 className='font-medium text-xl'>Summary: <span className="italic">{movie.plotSummary}</span></h4>
               <p>Director: {movie.director}</p>
               <p>Cast: {movie.cast}</p>
+                
               <div className="flex flex-col md:flex-row lg:flex-row gap-2">
-                <Link to='/mycollection' className='btn btn-primary'>Add to collection</Link>
                 <Link to='/mycollection' className='btn btn-secondary'>Wishlist</Link>
               </div>
             </div>
@@ -66,6 +98,7 @@ if (!movie) return <div className="p-6">No movie found</div>;
               <div className="flex flex-col md:flex-row lg:flex-row gap-2">
                 <Link to={`/editmovie/${movie._id}`} className='btn btn-info'>Edit</Link>
                 <Link to='/allmovies' className='btn btn-accent'>Back</Link>
+                <button onClick={()=>handleDel(movie._id)} className='btn btn-error'>Delete</button>
               </div>
             </div>
           </div>   

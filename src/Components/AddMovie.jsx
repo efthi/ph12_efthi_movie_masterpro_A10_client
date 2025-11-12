@@ -7,8 +7,8 @@ import { AuthContext } from '../Context/AuthContext';
 
 const AddMovie = () => {
 const {user} = use(AuthContext)
-
-const [posterUrl, setPosterUrl] = useState('posterURL');
+const nopreview_image = 'https://upload.wikimedia.org/wikipedia/commons/d/dc/No_Preview_image_2.png';
+const [posterUrl, setPosterUrl] = useState(nopreview_image);
 const [title, setTitle] = useState('Add Movie')
 
 
@@ -73,7 +73,21 @@ const addMovieData = (e) => {
     addedAtMs,
     dateAddedLocal,
   };
-
+  fetch('http://localhost:3000/addmovie', {
+    method:"POST",
+    headers: { 'content-type' : 'application/json'},
+    body: JSON.stringify(newMovie),
+  })
+    .then(res=>res.json())
+    .then(data=> {
+        console.log(data);
+        if(data.insertedId){
+            toast.success(`${title} Added to Database`);
+            e.target.reset();
+            setPosterUrl(nopreview_image);
+        }
+        
+    })
     console.log(newMovie);
     
   

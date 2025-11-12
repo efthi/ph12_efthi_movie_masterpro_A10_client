@@ -23,7 +23,6 @@ const showHidePass = (e) => {
 
 //locattion এর ডেটা ধরার জন্য
 let location = useLocation();
-console.log(location);
 
 
 //এটা দিয়ে url Navigation এর মান ধরার জন্য, পরে navigate এ ভ্যালু দিয়ে লিংক সেট হবে
@@ -62,8 +61,6 @@ const handleGoogleLogin =() => {
         })
         .catch(error=> console.log(error))
 }
-
-console.log(user);
 
     return (
         <>

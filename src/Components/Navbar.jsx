@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import { Star, Clapperboard, LibraryBig,ListChecks , LogIn } from 'lucide-react';
+import { Star, Clapperboard, LibraryBig, ListChecks, CirclePlus, LogIn } from 'lucide-react';
 import { Navigate, NavLink, useNavigate } from 'react-router';
 import ThemeChange from './ThemeChange';
 import { AuthContext } from '../Context/AuthContext';
@@ -12,7 +12,7 @@ const defaultPropic ='https://media.istockphoto.com/id/1300845620/vector/user-ic
 const Navbar = () => {
 
 const {user, loading, SignOutUser} =use(AuthContext);//user কে নিয়ে আসা হয়েছে
-console.log('loading:',loading);
+// console.log('loading:',loading);
 
 const links = <>
             <li><NavLink to='/' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""} ><Star size={16} color="#8000ff" strokeWidth={1.5} />Home</NavLink></li>
@@ -20,6 +20,7 @@ const links = <>
             { user &&
                 <><li><NavLink to='/mycollection' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""}><LibraryBig size={16} color="#8000ff" strokeWidth={1.5} />My Collection</NavLink></li>
                 <li><NavLink to='/wishlist' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""} ><ListChecks  size={16} color="#8000ff" strokeWidth={1.5} />Wishlist</NavLink></li>
+                <li><NavLink to='/addmovie' className={({isActive})=> isActive ? "btn btn-outline btn-accent" : ""} ><CirclePlus   size={16} color="#8000ff" strokeWidth={1.5} />Add New</NavLink></li>
                 </>
             }
             { loading ? (<span className="loading loading-bars loading-xs ml-3"></span>) : user ? (<></>) :

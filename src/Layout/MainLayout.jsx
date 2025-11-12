@@ -7,7 +7,7 @@ import { Outlet, useNavigation } from 'react-router';
 const MainLayout = () => {
  
 const navigation = useNavigation();
-console.log(navigation.state);
+// console.log(navigation.state);
 
     return (
         <>

@@ -2,13 +2,13 @@ import React, { use, useEffect, useState } from 'react';
 import { useLocation } from 'react-router'
 import Card from '../Components/Card';
 import Spinner from '../Components/Spinner';
-import useDataMan from '../hooks/useDataman';
+import useDataMan from '../hooks/useDataMan';
 import ErrorPage from './ErrorPage';
 import { AuthContext } from '../Context/AuthContext';
 
 const AllMovies = () => {
  //Page Title
- const title = useEffect(()=>{
+useEffect(()=>{
    document.title = 'All Movies | Movie Master Pro '
  }, []);
 

@@ -1,31 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import {Link, useLocation, useParams} from 'react-router';
 import { Star, Drama , CalendarClock } from 'lucide-react';
-import useDataMan from '../hooks/useDataMan';
-import axios  from 'axios';
+import Spinner from '../Components/Spinner';
 
 const MovieDetails = () => {
-  //Page Title
- useEffect(()=>{
-    document.title = 'Movie Details | Movie Master Pro '
-  }, []);
 
-const {id} = useParams();
-// const location = useLocation();
+  //Get the id from card.jsx
+  const {id} = useParams();
+ 
+  const [movie, setMovie] = useState("");
+  const [loading, setLoading] = useState(true); //এটা fetch এর জন্য 
+  const [error, setError] = useState("");
 
-  const [movie, setMovie] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState("");
-
-useEffect(() => {
-      fetch(`http://localhost:3000/moviedetails/${id}`)
+ //fetching the data
+  useEffect(()=>{
+    setLoading(true);
+    fetch(`http://localhost:3000/moviedetails/${id}`)
       .then((res) => res.json())
-      .then((data) => setMovie(data));
-}, [id])
+      .then((data) => setMovie(data))
+      .catch((err) => setError(err))
+      .finally(() => setLoading(false));
+
+  }, [id]);
+
+// const location = useLocation();
+  
+//Page title  
+document.title = `${movie.title} | Movie Master Pro`;
 
 console.log(movie._id);
 
-
+if (loading) return <span className="container mx-auto loading loading-bars loading-মদ ml-3"></span>;
+if (error) return <div className="p-6 text-red-500">Error: {error}</div>;
+if (!movie) return <div className="p-6">No movie found</div>;
 
     return (
         <>
@@ -48,7 +55,7 @@ console.log(movie._id);
                 <span><CalendarClock size={32} color="#ff0000" /> {movie.releaseYear}</span>
               </div>
               <span>Duration: {movie.duration}</span>
-              <span>Lang: {movie.language}</span>
+              <span>Language: {movie.language}</span>
               <span>Country: {movie.country}</span>
               <span className='code'>EIDR: {movie.eidr}</span>
               <span>Added by: {movie.addedBy}</span>

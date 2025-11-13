@@ -3,6 +3,7 @@ import { AuthContext } from '../Context/AuthContext';
 import ErrorPage from './ErrorPage';
 import Spinner from '../Components/Spinner';
 import Card from '../Components/Card';
+import { Link } from 'react-router';
 
 const MyCollection = () => {
  //Page Title
@@ -37,8 +38,18 @@ if(error) return <ErrorPage err={error}></ErrorPage>
 
     return (
         <>
+        {
+           movies.length ? <></> : (<div className="p-6 mx-auto text-center bg-base-100/50">
+            <h2 className="text-2xl font-bold mb-4">My Colllection</h2>
+            <p>আপনি কোন Movie যুক্ত করেননি</p>
+            <Link to="/addmovie" className="btn btn-accent mt-4">
+              Add Movie
+            </Link>
+          </div>)
+        }
+
         {loading ? (<Spinner></Spinner>) : (
-            
+        
         <div className='container mx-auto max-w-[90%] m-10'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             { movies.map(movie => (

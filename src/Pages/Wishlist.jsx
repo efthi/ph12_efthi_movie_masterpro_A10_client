@@ -56,7 +56,7 @@ const Wishlist = () => {
 
   if (!movies.length) {
     return (
-      <div className="p-6">
+      <div className="p-6 mx-auto text-center bg-base-100/50">
         <h2 className="text-2xl font-bold mb-4">My Wishlist</h2>
         <p>এখনো কোনো movie wishlist এ নেই।</p>
         <Link to="/allmovies" className="btn btn-accent mt-4">

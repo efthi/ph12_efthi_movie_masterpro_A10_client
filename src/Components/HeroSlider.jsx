@@ -35,7 +35,7 @@ const HeroSlider = () => {
   }
 
   return (
-    <div className="carousel w-full max-w-5xl mx-auto rounded-box mb-10">
+    <div className="carousel w-full mx-auto rounded-box mb-10">
       {movies.map((movie, index) => {
         const prevIndex = (index - 1 + movies.length) % movies.length; // আগের স্লাইড
         const nextIndex = (index + 1) % movies.length;                 // পরের স্লাইড

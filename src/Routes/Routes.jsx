@@ -15,6 +15,7 @@ import EditMovie from "../Components/EditMovie";
 import AddMovie from "../Components/AddMovie";
 import NotFound from "../Components/NotFound";
 import ForgetPassword from "../Pages/ForgetPassword";
+import EditProfile from "../Pages/EditProfile";
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
             {path:'mycollection', element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute> },
             {path:'wishlist', element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute> },
             {path:'userprofile', element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute> },
+            {path:'edituserprofile', element: <PrivateRoute><EditProfile></EditProfile> </PrivateRoute> },
 
             {
                 path: "*", element: <NotFound></NotFound>

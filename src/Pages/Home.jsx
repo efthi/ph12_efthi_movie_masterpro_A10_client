@@ -10,6 +10,7 @@ import AboutPlatform from '../Components/AboutPlatform';
 import { useNavigation } from 'react-router';
 import HeroSlider from '../Components/HeroSlider';
 import MovieUserStats from '../Components/MovieUserStats';
+import GenreSection from '../Components/GenresSection';
 
 const Home = () => {
 //Page Title
@@ -19,12 +20,13 @@ const title = useEffect(()=>{
 
     return (
     <>
-      <div className='w-full max-w-5xl mx-auto my-8'>
+      <div className='w-full max-w-11/12 mx-auto my-8'>
       {/* <Slider></Slider> */}
       <HeroSlider></HeroSlider>
       <MovieUserStats></MovieUserStats>
       <TopRated></TopRated>
       <RecentMovies></RecentMovies>
+      <GenreSection></GenreSection>
       <AboutPlatform></AboutPlatform>
       </div>
     </>

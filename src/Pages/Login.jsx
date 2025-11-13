@@ -13,7 +13,6 @@ useEffect(()=>{
 //
 const [showpass, setShwopass] = useState(false);
 
-
 //show/hide password toggle এর ফাংশন এখানে
 const showHidePass = (e) => {
     e.preventDefault();
@@ -21,12 +20,15 @@ const showHidePass = (e) => {
     setShwopass(!showpass);
 };
 
-//locattion এর ডেটা ধরার জন্য
+//locatton এর ডেটা ধরার জন্য
 let location = useLocation();
 
 
 //এটা দিয়ে url Navigation এর মান ধরার জন্য, পরে navigate এ ভ্যালু দিয়ে লিংক সেট হবে
 const navigate = useNavigate(); 
+
+
+
 
 const {signInUser, signInWithGoogle, user, loading} = use(AuthContext); //signIn কে AuthContext এর মাধ্যমে এখানে আনা হলো
 //Login এর প্রসেস হ্যান্ডেল হবে এখান থেকে
@@ -47,7 +49,7 @@ const handleLogin =(e) => {
         })
         .catch((error) => {
             console.log(error);
-            toast.success('Login Failed')            
+            toast.error('Login Failed:Invalid Credentials!')            
         })
 }
 
@@ -79,13 +81,13 @@ const handleGoogleLogin = () => {
 
           toast.success('Login Successful!');
           setTimeout(() => {
-            // navigate(from, { replace: true }) ও করতে পারো
+            // navigate(from, { replace: true }) ও করা যায়
             navigate('/register');
           }, 2000);
         })
         .catch((err) => {
           console.error('registerUser (google) error:', err);
-          // চাইলে এখানে ছোট একটা warning দেখাতে পারো
+          // চাইলে এখানে ছোট একটা warning দেখানো যায়
           toast.warn('Login হলো, কিন্তু user DB তে save হয়নি');
           setTimeout(() => {
             navigate('/register');
@@ -107,7 +109,7 @@ const handleGoogleLogin = () => {
                 <p className='font-bold text-xl text-center'>Welcome! Please Login </p>
                     <label className="label">Email</label>
                     <label className='input'><Mail color="#ff0000" />
-                        <input type="email" className="input" name="email" placeholder="Email" />
+                        <input type="email" className="input" name="email" placeholder="Email"/>
                     </label>
 
                     <div className=''> 
@@ -121,12 +123,10 @@ const handleGoogleLogin = () => {
                             </button>
                         </label>
                     </div>
-
-                    {/* ⬇️ NEW: Forget password লিংক (রাউটে পাঠাবে) */}
                     <div className="mt-2 text-right">
-                        <button type="button"  className="btn btn-link btn-xs text-sm">
+                        <Link to='/forgetpassword'  className="btn btn-link btn-xs text-sm">
                         Forgot password?
-                        </button>
+                        </Link>
                     </div>
                     <button type='submit' className="btn btn-neutral mt-4"><LogIn color="#ff0000" /> Login</button>
                     

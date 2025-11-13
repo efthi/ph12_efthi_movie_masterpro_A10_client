@@ -14,6 +14,7 @@ import GuestRoute from "./GuestRoute";
 import EditMovie from "../Components/EditMovie";
 import AddMovie from "../Components/AddMovie";
 import NotFound from "../Components/NotFound";
+import ForgetPassword from "../Pages/ForgetPassword";
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
             
             //Only Guest, যাতে User লগিন অবস্থায় এক্সেস না পায়
             {path:'login', element: <GuestRoute><Login></Login></GuestRoute> },
+            {path:'forgetpassword', element: <GuestRoute><ForgetPassword></ForgetPassword></GuestRoute> },
             {path:'register', element: <GuestRoute><Register></Register> </GuestRoute>},
 
             /**Private Routes এখানে */

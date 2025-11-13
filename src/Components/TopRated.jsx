@@ -87,7 +87,7 @@ const TopRated = () => {
 
                 <div className="mt-2">
                   <Link
-                    to={`/moviedetails/${movie._id}`}
+                    to={`allmovies/moviedetails/${movie._id}`}
                     className="btn btn-xs btn-primary"
                   >
                     Details

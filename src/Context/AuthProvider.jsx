@@ -21,6 +21,9 @@ const AuthProvider = ( {children} ) => {
     const signInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
+        .finally(()=>{
+          setLoading(false);  
+        })
     }
     //এটা আরেকটু বুঝতে হবে, উপরে user এর মান সেট করতেছে
     useEffect(() => {

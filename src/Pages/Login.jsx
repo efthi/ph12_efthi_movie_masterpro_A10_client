@@ -6,7 +6,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 const Login = () => {
  //Page Title
- const title = useEffect(()=>{
+useEffect(()=>{
    document.title = 'Login | Movie Master Pro '
  }, []);
 
@@ -47,13 +47,7 @@ const handleLogin =(e) => {
         })
         .catch((error) => {
             console.log(error);
-            toast.success('Login Failed')
-            setTimeout(()=> {
-            //navigate(from, {replace:true})
-            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
-            navigate('/login')
-            }, 2000);
-            
+            toast.success('Login Failed')            
         })
 }
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Star, Drama , CalendarClock } from 'lucide-react';
 import { Link, NavLink } from 'react-router';
 
 const Card = ({movie}) => {
-    return (
+    
+return (
         <>
          <div className="card card-side bg-base-100 shadow-indigo-600 shadow-2xl">
             <figure>

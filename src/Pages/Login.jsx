@@ -58,27 +58,51 @@ const handleLogin =(e) => {
 }
 
 //Googleদিয়ে লগিন
-const handleGoogleLogin =() => {
-    signInWithGoogle()
-        .then(result => {
-            console.log(result);
-            toast.success('Login Successful!');
-            setTimeout(()=> {
-            //navigate(from, {replace:true})
-            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
-            navigate(location.state ||'/allmovies')
-            }, 2000);
+const handleGoogleLogin = () => {
+  signInWithGoogle()
+    .then((result) => {
+      console.log('Google login result:', result);
+      const fbUser = result.user; // Firebase user object
+
+      // 👉 প্রথমে MongoDB তে ইউজার info পাঠাই
+      fetch('http://localhost:3000/registerUser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: fbUser.email,
+          name: fbUser.displayName,
+          photoURL: fbUser.photoURL, // চাইলে backend এ use করতে পারো
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('registerUser (google) response:', data);
+
+          // success না হলেও শুধু warning দিতে পারো, login তো হয়ে গেছে
+          if (!data.success) {
+            console.warn('User not saved in DB:', data.message);
+          }
+
+          toast.success('Login Successful!');
+          setTimeout(() => {
+            // navigate(from, { replace: true }) ও করতে পারো
+            navigate('/register');
+          }, 2000);
         })
-        .catch(error=> {
-            console.log(error);
-            toast.error(error);
-            setTimeout(()=> {
-            //navigate(from, {replace:true})
-            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
-            navigate('/login')
-            }, 2000);
-        })
-}
+        .catch((err) => {
+          console.error('registerUser (google) error:', err);
+          // চাইলে এখানে ছোট একটা warning দেখাতে পারো
+          toast.warn('Login হলো, কিন্তু user DB তে save হয়নি');
+          setTimeout(() => {
+            navigate('/register');
+          }, 2000);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error(error.message);
+    });
+};
 
     return (
         <>

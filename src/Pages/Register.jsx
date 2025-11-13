@@ -1,15 +1,16 @@
 import React, { use, useEffect, useState } from 'react';
 import { Mail, SquareAsterisk, Image, Eye, EyeOff, User } from 'lucide-react';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Context/AuthContext';
 
 const Register = () => {
 //Page Title
-const title = useEffect(()=>{
+useEffect(()=>{
     document.title = 'Register | Movie Master Pro '
   }, []);
-
+//আগের পেইজের location ধরা
+const location = useLocation();
 //show/hide এর জন্য state
 const [showpass, setShwopass] = useState(false);
 
@@ -24,50 +25,111 @@ const showHidePass = (e) => {
 const navigate = useNavigate(); 
 
 const {createUser, signInWithGoogle, loading} = use(AuthContext); //createUser কে AuthContext এর মাধ্যমে এখানে আনা হলো
-//handleSignUp আজ হবে এখানে
-const handleSignUp =(e) => {
-    e.preventDefault();
-    const displayName = e.target.name.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const photoURL = e.target.imageurl.value;
-    //এখানে RegEx এর কাজ বাকী আছে
 
-        console.log(displayName, email, password, photoURL);
-        //AuthContext এর মাধ্যমে আনা createUser দিয়ে কাজ হবে এখানে
-        createUser(email, password)
-            .then(result => {
-                console.log(result); //test এর জন্য
-                console.log(e.message);
-                
-                //e.target.reset();
-                toast.success(`Congrats! ${displayName} Registration complete, Login now!`, );
-                setTimeout(() => {
-                    navigate('/login') //Login পেইজে নিয়ে যাবে useNavigate() থেকে কাজ করছে
-                }, 2000);
-            })
-            .catch((e) => {
-                //console.log(e);
-                toast.error(e.message)
-            })
-    
-}
+//handleSignUp হবে এখানে
+const handleSignUp = (e) => {
+  e.preventDefault();
+  const displayName = e.target.name.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+  const photoURL = e.target.imageurl.value;
+
+  console.log(displayName, email, password, photoURL);
+
+  createUser(email, password)
+    .then((result) => {
+      console.log('Firebase user:', result.user);
+
+      // এখানে চাইলে displayName / photoURL Firebase profile এও সেট করতে পারো
+      // updateProfile(result.user, { displayName, photoURL })
+
+      // 🔹 এখন MongoDB তে পাঠাই
+      fetch('http://localhost:3000/registerUser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,          // form থেকে নেয়া
+          name: displayName,     // form থেকে নেয়া
+          photoURL: photoURL,    // চাইলে backend এ use করবে
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('registerUser response:', data);
+
+          // চাইলে success check করতে পারো
+          if (!data.success) {
+            toast.error(data.message || 'User save failed in DB');
+            return;
+          }
+
+          toast.success(
+            `Congrats! ${displayName} Registration complete, Login now!`
+          );
+
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error('registerUser error:', err);
+          toast.error('Could not save user in database');
+        });
+    })
+    .catch((e) => {
+      console.log(e);
+      toast.error(e.message);
+    });
+};
 
 //Googleদিয়ে লগিন
-const handleGoogleLogin =() => {
-    signInWithGoogle()
-        .then(result => {
-            console.log(result);
-            toast.success('Login Successful!');
-            setTimeout(()=> {
-            //navigate(from, {replace:true})
-            //চাইলে উপরের from নামের চলকেও করা যায় const from = location.state?.from?.pathname || "/allmovies"; 
-            navigate(location.state ||'/allmovies')
-            }, 2000);
-            
+// Google দিয়ে লগিন
+const handleGoogleLogin = () => {
+  signInWithGoogle()
+    .then((result) => {
+      console.log('Google login result:', result);
+      const fbUser = result.user; // Firebase user object
+
+      // 👉 প্রথমে MongoDB তে ইউজার info পাঠাই
+      fetch('http://localhost:3000/registerUser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: fbUser.email,
+          name: fbUser.displayName,
+          photoURL: fbUser.photoURL, // চাইলে backend এ use করতে পারো
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('registerUser (google) response:', data);
+
+          // success না হলেও শুধু warning দিতে পারো, login তো হয়ে গেছে
+          if (!data.success) {
+            console.warn('User not saved in DB:', data.message);
+          }
+
+          toast.success('Login Successful!');
+          setTimeout(() => {
+            // navigate(from, { replace: true }) ও করতে পারো
+            navigate('/register');
+          }, 2000);
         })
-        .catch(error=> console.log(error))
-}
+        .catch((err) => {
+          console.error('registerUser (google) error:', err);
+          // চাইলে এখানে ছোট একটা warning দেখাতে পারো
+          toast.warn('Login হলো, কিন্তু user DB তে save হয়নি');
+          setTimeout(() => {
+            navigate('/register');
+          }, 2000);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error(error.message);
+    });
+};
+
 
     return (
         <>

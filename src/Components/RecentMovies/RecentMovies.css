@@ -1,0 +1,22 @@
+/* পুরো marquee view */
+.recent-marquee-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ভেতরের track, flex + animation */
+.recent-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: recent-marquee 25s linear infinite;
+}
+
+/* বামে দিকে ধীরে ধীরে স্ক্রল করবে */
+@keyframes recent-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

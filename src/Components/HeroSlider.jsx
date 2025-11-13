@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import Spinner from './Spinner';
 
 const HeroSlider = () => {
   const [movies, setMovies] = useState([]);
@@ -23,7 +24,7 @@ const HeroSlider = () => {
   }, []);
 
   if (loading) {
-    return <span className="loading loading-infinity loading-md text-success"></span>;
+    return <Spinner></Spinner>;
   }
 
   if (error) {

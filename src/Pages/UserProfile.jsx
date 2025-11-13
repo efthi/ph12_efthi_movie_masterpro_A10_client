@@ -52,7 +52,7 @@ const UserProfile = () => {
             {/* প্রোফাইল ছবি */}
             <div className="avatar">
               <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img src={photoURL} alt={displayName} />
+                <img src={user.photoURL} alt={displayName} />
               </div>
             </div>
 
@@ -63,7 +63,7 @@ const UserProfile = () => {
               </label>
               <div className="input flex items-center gap-2">
                 <User2 size={18} />
-                <span className="truncate">{displayName}</span>
+                <span className="truncate">{user.displayName}</span>
               </div>
             </div>
 

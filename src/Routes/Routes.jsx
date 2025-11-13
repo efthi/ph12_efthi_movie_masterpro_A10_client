@@ -33,6 +33,7 @@ const router = createBrowserRouter([
 
             /**Private Routes এখানে */
             {path:'allmovies/moviedetails/:id', element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute> },
+            {path:'mycollection/moviedetails/:id', element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute> },
             {path:'addmovie', element: <PrivateRoute><AddMovie></AddMovie></PrivateRoute>},
             {path:'editmovie/:id', element: <PrivateRoute><EditMovie></EditMovie></PrivateRoute>},
             {path:'mycollection', element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute> },

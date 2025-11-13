@@ -18,8 +18,6 @@ const{loading, err, movies} = useDataMan();
 if(err) return <ErrorPage err={err}></ErrorPage>
 
 
-
-        
     return (
         <>
         {loading ? (<Spinner></Spinner>) : (

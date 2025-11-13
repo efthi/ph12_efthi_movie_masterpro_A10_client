@@ -33,8 +33,17 @@ const handleSignUp = (e) => {
   const email = e.target.email.value;
   const password = e.target.password.value;
   const photoURL = e.target.imageurl.value;
+  const regExp =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{8,}$/;
+        console.log(regExp.test(password));
+        if (!regExp.test(password)) {
+        toast.error(
+            "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+        );
+        return;
+        }
 
-  console.log(displayName, email, password, photoURL);
+ // console.log(displayName, email, password, photoURL);
 
   createUser(email, password)
     .then((result) => {

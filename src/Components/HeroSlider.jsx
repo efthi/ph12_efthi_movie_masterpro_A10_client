@@ -13,7 +13,7 @@ const HeroSlider = () => {
       .then((res) => res.json())
       .then((data) => {
         // data = সব মুভি, আমরা শুধু প্রথম ৭টা নিলাম
-        const firstSeven = data.slice(0, 7);
+        const firstSeven = data.slice(-7);
         setMovies(firstSeven);
       })
       .catch((err) => {

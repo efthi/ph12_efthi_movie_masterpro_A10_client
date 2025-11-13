@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import {Link, useLocation, useParams} from 'react-router';
 import { Star, Drama , CalendarClock } from 'lucide-react';
 import Spinner from '../Components/Spinner';
 import Swal from "sweetalert2";
+import { AuthContext } from '../Context/AuthContext';
 
 const MovieDetails = () => {
 
@@ -12,6 +13,8 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState("");
   const [loading, setLoading] = useState(true); //এটা fetch এর জন্য 
   const [error, setError] = useState("");
+
+  const {user} =use(AuthContext);
 
  //fetching the data
   useEffect(()=>{
@@ -96,9 +99,15 @@ const handleDel = (id) => {
               <span className='code'>EIDR: {movie.eidr}</span>
               <span>Added by: {movie.addedBy}</span>
               <div className="flex flex-col md:flex-row lg:flex-row gap-2">
-                <Link to={`/editmovie/${movie._id}`} className='btn btn-info'>Edit</Link>
                 <Link to='/allmovies' className='btn btn-accent'>Back</Link>
-                <button onClick={()=>handleDel(movie._id)} className='btn btn-error'>Delete</button>
+                {
+                  (movie.addedBy === user.email ) ? ( 
+                    <>
+                    <Link to={`/editmovie/${movie._id}`} className='btn btn-info'>Edit</Link>
+                     <button onClick={()=>handleDel(movie._id)} className='btn btn-error'>Delete</button>
+                    </>
+                     ) : <></>
+                }
               </div>
             </div>
           </div>   
